@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- <script id="jupyter-config-data" type="application/json" data-jupyter-lite-root=".">
+      {}
+    </script>
+    <script type="module">
+      await import('http://127.0.0.1:4000/assets/output/config-utils.js');
+
+    </script> -->
+{% include head.html %}
+<body>
+  {{ content }}
+  {% include javascripts.html %}
+  {% include analytics.html %}
+</body>
+</html>

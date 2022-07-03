@@ -1,0 +1,30 @@
+
+<header class="main-header">
+  <div class="wrapper">
+    <div class="header-flex">
+      <div class="menu-icon-container">
+        <span class="menu-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+      </div>
+      <nav class="main-nav">
+        <span class="menu-icon-close"><i class="fa fa-times" aria-hidden="true"></i></span>
+        <ul>
+        {% for post in site.posts offset:0 limit:50 %}
+          {% if post.title %}
+            <li><a href="{{ root_url }}{{ post.url | prepend: site.baseurl }}" class="recent-item" ><span>{{ post.title }}</span></a></li>
+          {% endif %}
+        {% endfor %}
+
+        </ul>
+      </nav>
+      <p class="logo"><a href="{{site.baseurl}}/">{{ site.author }}</a></p>
+      <div class="search-icon-container">
+        <span class="search-icon"><a><i class="fa fa-search" aria-hidden="true"></i></a></span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- including plotlyjs -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+</header> <!-- End Header -->

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gaussian Processes</title>
+
+    <script src="../../js/dependency/plotlyJS/plotly.js"></script>
+    <script src="../../js/dependency/ndjs/nd.min.js"></script>
+    <script src="../../js/dependency/tensorflowJS/tf.js"></script>
+    <script src="../../js/dependency/multivariate-normal.js"></script>
+    <script src="../../js/dependency/d3.js"></script>
+    <!-- <script src="../../dependency/multGauss/mltivariate_gaussian.js"></script> -->
+
+    <!-- utility -->
+    <script src="../../js/dependency/utils.js"></script>
+
+    <style>
+        body{
+            /* background-color:rgb(10,10,25); */
+            background-color: black;
+        }
+        #parameterSpace {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #parameterSpace button{
+
+        }
+        #vizContainer {
+           display: flex; 
+           flex-direction: row;
+           justify-content: center;
+           color: white;
+           font-weight: 500;
+           margin-top: 2em;
+           margin-left: 9em;
+        }
+    </style>
+</head>
+<body >
+
+    <div id="vizContainer">
+
+        <div id="viz">
+        </div>
+        <div id="parameterSpace">
+            <h2>Live Update</h2>
+            <button onclick="updateViz()">Recalculate</button>
+        </div>
+    </div>
+    <script src="Source/main.js"></script>
+    <script src="Source/appD3.js"></script>
+
+    
+</body>
+</html>
