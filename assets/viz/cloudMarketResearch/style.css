@@ -271,12 +271,15 @@ Elements to control the title and country selector
 
 /*
 Bar graph on left
+
 */
 #barGraph {
     position: absolute;
     /*bottom:10px;*/
     left:-7px;
     opacity: 0.9;
+    /* Modified. */
+    /* display: none; */
 }
 #barGraph .import.ammo {
 	fill: 					#44B2D4;
@@ -335,7 +338,7 @@ Bar graph on left
     color:                  white;
     font-size:              12px;
     font-family:            'Roboto';
-    width:                  668px;
+    width:                  253px;
     background:             url('timelineBG.png') 8px 0 no-repeat; /*to be resized!*/
 }
 #history ul li {

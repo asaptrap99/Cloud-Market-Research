@@ -14,7 +14,6 @@ function makeConnectionLineGeometry(exporter, importer, value, type) {
 
 	//	start of the line
 	var start = exporter.center;
-	var startUpperAnchor = exporter.center;
 
 	//	end of the line
 	var end = importer.center;
@@ -48,13 +47,14 @@ function makeConnectionLineGeometry(exporter, importer, value, type) {
 	var distanceHalf = distanceBetweenCountryCenter * 0.5;
 
 	var midStartAnchor = mid.clone().addSelf(normal.clone().multiplyScalar(distanceHalf));
-	var startAnchor = midStartAnchor;
+	var startAnchor = start;
 	var midEndAnchor = mid.clone().addSelf(normal.clone().multiplyScalar(-distanceHalf));
 	var endAnchor = end;
-	var startVecMax = start.normalize().multiplyScalar(150)
+	var startVecMax = start.normalize().multiplyScalar(100 + value)
 
 	//	now make a bezier curve out of the above like so in the diagram
 	var splineCurveA = new THREE.CubicBezierCurve3(start, startVecMax, startVecMax, start);
+	// var splineCurveA = new THREE.CubicBezierCurve3(start, startAnchor,midStartAnchor, mid);
 
 	const radius = 7;  // ui: radius
 	var spike = new THREE.TetrahedronGeometry(radius);
@@ -65,11 +65,11 @@ function makeConnectionLineGeometry(exporter, importer, value, type) {
 	// const spike = new THREE.Mesh( spikeGeo, spikeMat );
 	// scene.add( spike );
 
-	var splineCurveB = new THREE.CubicBezierCurve3(mid, midEndAnchor, endAnchor, end);
+	// var splineCurveB = new THREE.CubicBezierCurve3(mid, midEndAnchor, endAnchor, end);
 	// splineCurveB.updateArcLengths();
 
 	//	how many vertices do we want on this guy? this is for *each* side
-	var vertexCountDesired = Math.floor( /*splineCurveA.getLength()*/ distanceBetweenCountryCenter * 0.02 + 6) * 0;
+	var vertexCountDesired = Math.floor( /*splineCurveA.getLength()*/ distanceBetweenCountryCenter * 0.02 + 6) * 2;
 
 	//	collect the vertices
 	var points = splineCurveA.getPoints(vertexCountDesired);

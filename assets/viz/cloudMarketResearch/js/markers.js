@@ -111,13 +111,18 @@ function attachMarkerToCountry( countryName, importance ){
 	// marker.nameLayerShorten = country.countryCode;;	
 	
 	var importExportText = "";
-	if(country.exportedAmount > 0 && country.importedAmount > 0) {
-	   importExportText += "imported:&nbsp;$" + numberWithCommas(country.importedAmount) + "<br />" +
-	       "exported:&nbsp;$"+numberWithCommas(country.exportedAmount);
-	} else if(country.exportedAmount > 0 && country.importedAmount == 0) {
-	   importExportText += "exported:&nbsp;$"+numberWithCommas(country.exportedAmount)+"<br />&nbsp;";
-	} else if(country.exportedAmount == 0 && country.importedAmount > 0) {
-	   importExportText += "imported:&nbsp;$"+numberWithCommas(country.importedAmount)+"<br />&nbsp;";
+
+	if (country.marketCap.length != 0){
+
+		if(country.exportedAmount > 0 && country.importedAmount > 0) {
+		importExportText += "AWS:&nbsp;$" + numberWithCommas(Math.abs(country.marketCap[0])) + '\n' + "<br />"
+		importExportText += "GCP:&nbsp;$"+numberWithCommas(Math.abs(country.marketCap[1]))+ '\n'+"<br />&nbsp;";
+		importExportText += "Azure:&nbsp;$"+numberWithCommas(Math.abs(country.marketCap[2]))+ '\n'+"<br />&nbsp;";
+		} else if(country.exportedAmount > 0 && country.importedAmount == 0) {
+		importExportText += "Unknown:&nbsp;$"+numberWithCommas(country.exportedAmount)+"<br />&nbsp;";
+		} else if(country.exportedAmount == 0 && country.importedAmount > 0) {
+		importExportText += "Unknown:&nbsp;$"+numberWithCommas(country.importedAmount)+"<br />&nbsp;";
+		}
 	}
 
 	marker.importExportText = importExportText;
@@ -144,6 +149,7 @@ function attachMarkerToCountry( countryName, importance ){
 
 	var markerSelect = function(e){
 		var selection = selectionData;
+		console.log('inside markerSelect', selection.getExportCategories(), selection.getImportCategories())
 		selectVisualization( timeBins, selection.selectedYear, [this.countryName], selection.getExportCategories(), selection.getImportCategories() );	
 	};
 	marker.addEventListener('click', markerSelect, true);

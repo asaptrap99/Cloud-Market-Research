@@ -18,6 +18,7 @@ function loadGeoData( latlonData ){
 		//	save out country name and code info
 		country.countryCode = i;
 		country.countryName = countryLookup[i];			
+		console.log('countryName: ', country.countryName)
 
 		//	take the lat lon from the data and convert this to 3d globe space
         var lon = country.lon - 90;
@@ -33,6 +34,7 @@ function loadGeoData( latlonData ){
 	
 		//	save and catalogue       
 		country.center = center;
+
 		countryData[country.countryName] = country;	
 	}		
 

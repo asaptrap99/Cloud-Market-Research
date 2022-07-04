@@ -57,9 +57,9 @@ var selectableCountries = [];
 //	now they are just strings of categories
 //	Category Name : Category Code
 var weaponLookup = {
-	'Military Weapons' 		: 'mil',
-	'Civilian Weapons'		: 'civ',
-	'Ammunition'			: 'ammo',
+	'Military Weapons' 		: 'aws',
+	'Civilian Weapons'		: 'gcp',
+	'Ammunition'			: 'azure',
 };
 
 //	a list of the reverse for easy lookup
@@ -72,13 +72,13 @@ for( var i in weaponLookup ){
 
 //	A list of category colors
 var categoryColors = {
-	'mil' : 0xdd380c,
-	'civ' : 0x3dba00,
-	'ammo' : 0x154492,
+	'aws' : 0xdd380c,
+	'gcp' : 0x3dba00,
+	'azure' : 0x154492,
 }
 
-// var exportColor = 0xdd380c;
-var exportColor = 0x0000;
+var exportColor = 0xdd380c;
+// var exportColor = 0x0000;
 var importColor = 0x154492;
 
 //	the currently selected country
@@ -133,7 +133,7 @@ function start( e ){
 
 
 var Selection = function(){
-	this.selectedYear = '2010';
+	this.selectedYear = '2016';
 	this.selectedCountry = 'UNITED STATES';
 	// this.showExports = true;
 	// this.showImports = true;
@@ -146,12 +146,15 @@ var Selection = function(){
 		this.importCategories[i] = true;
 	}				
 
+
 	this.getExportCategories = function(){
 		var list = [];
 		for( var i in this.exportCategories ){
+			console.log('exports ', i, this.exportCategories[i])
 			if( this.exportCategories[i] )
 				list.push(i);
 		}
+		console.log('list: ', list)
 		return list;
 	}		
 
@@ -163,6 +166,9 @@ var Selection = function(){
 		}
 		return list;
 	}
+
+
+	console.log('import and Export Categories:', this.exportCategories, this.importCategories, this.getExportCategories(), this.getImportCategories())
 };
 
 //	-----------------------------------------------------------------------------
@@ -256,6 +262,8 @@ function initScene() {
 	sphere.id = "base";	
 	rotating.add( sphere );	
 
+	window.timeBins = timeBins
+
 
 	for( var i in timeBins ){					
 		var bin = timeBins[i].data;
@@ -285,6 +293,7 @@ function initScene() {
 	console.timeEnd('loadGeoData');				
 
 	console.time('buildDataVizGeometries');
+	console.log('timeBins: ', timeBins)
 	var vizilines = buildDataVizGeometries(timeBins);
 	console.timeEnd('buildDataVizGeometries');
 
@@ -293,11 +302,12 @@ function initScene() {
 
 	buildGUI();
 
-	selectVisualization( timeBins, '2010', ['UNITED STATES'], ['Military Weapons','Civilian Weapons', 'Ammunition'], ['Military Weapons','Civilian Weapons', 'Ammunition'] );					
+	//selectVisualization( timeBins, '2016', ['UNITED STATES'], ['Military Weapons','Civilian Weapons', 'Ammunition'], ['Military Weapons','Civilian Weapons', 'Ammunition'] );					
 
 		// test for highlighting specific countries
-	// highlightCountry( ["United States", "Switzerland", "China"] );
-
+	bulkSelectViz(timeBins, '2017', selectableCountries.slice(2), ['Military Weapons','Civilian Weapons', 'Ammunition'], ['Military Weapons','Civilian Weapons', 'Ammunition'])
+	// highlightCountry( selectableCountries );
+ 
 
     //	-----------------------------------------------------------------------------
     //	Setup our renderer
@@ -512,10 +522,13 @@ function highlightCountry( countries ){
 function getHistoricalData( country ){
 	var history = [];	
 
+	console.log('historical data: ', country)
+
 	var countryName = country.countryName;
 
 	var exportCategories = selectionData.getExportCategories();
 	var importCategories = selectionData.getImportCategories();
+	console.log('export Catg:', exportCategories, importCategories)
 
 	for( var i in timeBins ){
 		var yearBin = timeBins[i].data;		
@@ -529,21 +542,21 @@ function getHistoricalData( country ){
 			var relevantCategory = ( countryName == exporterCountryName && $.inArray(categoryName, exportCategories ) >= 0 ) || 
 								   ( countryName == importerCountryName && $.inArray(categoryName, importCategories ) >= 0 );				
 
-			if( relevantCategory == false )
-				continue;
+			// if( relevantCategory == false )
+			// 	continue;
 
 			//	ignore all unidentified country data
 			if( countryData[exporterCountryName] === undefined || countryData[importerCountryName] === undefined )
 				continue;
 			
-			if( exporterCountryName == countryName )
-				value.exports += set.v;
-			if( importerCountryName == countryName )
-				value.imports += set.v;
+			// if( exporterCountryName == countryName )
+			value.exports += set.v;
+			// if( importerCountryName == countryName )
+				// value.imports += set.v;
 		}
 		history.push(value);
 	}
-	// console.log(history);
+	console.log(history);
 	return history;
 }
 

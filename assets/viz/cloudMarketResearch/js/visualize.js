@@ -48,11 +48,13 @@ function getVisualizedMesh( linearData, year, countries, exportCategories, impor
 	}
 
 	//	pick out the year first from the data
-	var indexFromYear = parseInt(year) - 1992;
+	var indexFromYear = parseInt(year) - 2016;
 	if( indexFromYear >= timeBins.length )
 		indexFromYear = timeBins.length-1;
 
 	var affectedCountries = [];
+
+	console.log('linearData: ', linearData, indexFromYear)
 
 	var bin = linearData[indexFromYear].data;	
 
@@ -94,9 +96,21 @@ function getVisualizedMesh( linearData, year, countries, exportCategories, impor
 				thisLineIsExport = true;
 			}
 
+
 			var lineColor = thisLineIsExport ? new THREE.Color(exportColor) : new THREE.Color(importColor);
 
-			var lastColor;
+			var allCloudMarketCap = []
+				linearData[year - 2016].data.forEach((p) =>{let c = p.mcap;
+					if (countries == p.i.toUpperCase()){
+						allCloudMarketCap.push(c)
+					} 
+				})
+			// var colorHex = [0xff0000,0x0000ff,0x00ff00][importCategories.indexOf(categoryName)]
+			var colorHex = [0xff0000,0x0000ff,0x00ff00][allCloudMarketCap[0].indexOf(allCloudMarketCap[0][year - 2016])]
+			
+			var lineColor = new THREE.Color(0xff0000)
+			
+
 			//	grab the colors from the vertices
 			for( s in set.lineGeometry.vertices ){
 				var v = set.lineGeometry.vertices[s];		
@@ -272,7 +286,11 @@ function getVisualizedMesh( linearData, year, countries, exportCategories, impor
 
 	return splineOutline;	
 }
-
+function bulkSelectViz(linearData, year, countries, exportCategories, importCategories){
+	for (let currCountry of countries){
+		selectVisualization(linearData, year, [currCountry], exportCategories, importCategories)
+	}
+}
 function selectVisualization( linearData, year, countries, exportCategories, importCategories ){
 	//	we're only doing one country for now so...
 	var cName = countries[0].toUpperCase();
@@ -280,18 +298,19 @@ function selectVisualization( linearData, year, countries, exportCategories, imp
 	$("#hudButtons .countryTextInput").val(cName);
 	previouslySelectedCountry = selectedCountry;
 	selectedCountry = countryData[countries[0].toUpperCase()];
+	console.log('selected Country Data: ', selectedCountry, countries)
     
 	selectedCountry.summary = {
 		imported: {
-			mil: 0,
-			civ: 0,
-			ammo: 0,
+			aws: 0,
+			gcp: 0,
+			azure: 0,
 			total: 0,
 		},
 		exported: {
-			mil: 0,
-			civ: 0,
-			ammo: 0,
+			aws: 0,
+			gcp: 0,
+			azure: 0,
 			total: 0,
 		},
 		total: 0,
@@ -303,24 +322,43 @@ function selectVisualization( linearData, year, countries, exportCategories, imp
 	//	clear off the country's internally held color data we used from last highlight
 	for( var i in countryData ){
 		var country = countryData[i];
+		var country_name = country.countryName;
+		var curr_year = year - 2016
+		
 		country.exportedAmount = 0;
 		country.importedAmount = 0;
+		console.log(year,"curr_year", curr_year)
+		let allCloudMarketCap = []
+		
+		timeBins[curr_year].data.forEach((p) =>{let c = p.mcap;
+			if (country_name == p.i.toUpperCase()){
+				allCloudMarketCap.push(c)
+			} 
+
+		})
+
+		country.marketCap = allCloudMarketCap[curr_year]
+		// country.marketCap = [1,2,3]
+		console.log('curr MarketCap: '+country.marketCap)
+		// .mcap
+		country.exp = [123,456,789] // TODO: add marketCap from timeBins i guess.
 		country.mapColor = 0;
 	}
 
-	//	clear markers
+	// //	clear markers
 	for( var i in selectableCountries ){
 		removeMarkerFromCountry( selectableCountries[i] );
 	}
 
 	//	clear children
-	while( visualizationMesh.children.length > 0 ){
-		var c = visualizationMesh.children[0];
-		visualizationMesh.remove(c);
-	}
+	// while( visualizationMesh.children.length > 0 ){
+	// 	var c = visualizationMesh.children[0];
+	// 	visualizationMesh.remove(c);
+	// }
 
 	//	build the mesh
 	console.time('getVisualizedMesh');
+	console.log(timeBins, year, countries, exportCategories, importCategories)
 	var mesh = getVisualizedMesh( timeBins, year, countries, exportCategories, importCategories );				
 	console.timeEnd('getVisualizedMesh');
 
