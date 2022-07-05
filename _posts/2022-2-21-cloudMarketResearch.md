@@ -39,7 +39,7 @@ During this period, they were able to sucessfully host their Microsoft-based pac
 Since their user base was dispersed around the APAC area, this had to be done without causing service interruptions or accessibility issues.
 The organization began its cloud migration by implementing the SaaS mail service O365. But they also had to organize, design, and manage their PaaS (Platform as a Service) and IaaS (Infrastructure as a Service) clouds. They intended to eventually embrace Microsoft Azure to create an internal cloud center of excellence since they required a reliable partner to help them with their cloud transition and score some quick victories. Please look at the timeline graph containing Malaysia's market cap insight. 
 
-<img  src="{{baseurl}}/assets/img/posts_imgs/cloudMarketResearch/Malaysia_data.png"></img>
+<img  src="{{baseurl}}/assets/img/posts_imgs/cloudMarketResearch/Malaysia_data.png"/>
 
 ### Case study 2
 
@@ -48,5 +48,5 @@ An E-commerce solution provider founded in 2015, the client intends to simplify 
 
 Firm migrated from AWS to GCP in order to leverage Google Cloud Platform benefits, reduce cost consumption, and meet business needs. Please look at the timeline graph containing India's market cap insight. 
 
-<img  src="{{baseurl}}/assets/img/posts_imgs/cloudMarketResearch/India_data.png"></img>
+<img  src="{{baseurl}}/assets/img/posts_imgs/cloudMarketResearch/India_data.png"/>
  
