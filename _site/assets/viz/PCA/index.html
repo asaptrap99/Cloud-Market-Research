@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Principle Component Analysis</title>
+
+    <style>
+        .Datacontainer{
+            width:500px;
+            height:500px;
+            background-color: red;
+            display: inline-block;
+
+        }
+    </style>
+
+
+    <!-- dependencies -->
+    <!-- <script src="../../dependency/tensorflowJS/tf.js"></script>
+    <script src="../../dependency/ndjs/dist/nd.min.js"></script>
+    <script src="../../dependency/plotlyJS/plotly-latest.min.js"></script>
+    <script src="../../dependency/d3.js"></script> -->
+
+    <!-- utility -->
+
+    <style>
+      body{
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+        #container{ 
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+          
+        #reCalculate-btn {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.911);
+            background: rgb(143, 22, 230);
+            padding: 10px 30px;
+            border-radius: 7px;
+            border:0;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.2s ease-in-out;
+            margin-left: 10px;
+        }
+
+            #Settings{
+                font-size: 17px;
+                font-weight: 800;
+                font-family:  Helvetica;
+            }
+      .switch{
+          position: relative;
+          display: inline-block;
+          width: 60px;
+          height: 34px;
+      }
+      .switch input { 
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .theme-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      .theme-slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      input:checked + .theme-slider {
+        background-color:  rgb(143, 22, 230);
+          box-shadow: 0 5px 15px rgba(175, 84, 240, 0.774);
+      }
+
+      input:focus + .theme-slider {
+        box-shadow: 0 0 1px  rgb(143, 22, 230);
+      }
+
+      input:checked + .theme-slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+      /* Rounded sliders */
+      .theme-slider.round {
+        border-radius: 34px;
+      }
+
+      .theme-slider.round:before {
+        border-radius: 50%;
+      }
+
+
+      .flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.flex-container > div {
+}
+
+.flex-grid {
+	display: flex;
+  flex-wrap: wrap;
+  margin-top: 10%;
+}
+.flex-grid-item {
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-basis: 33.3333%;
+  flex-basis: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: white;
+}
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  width: 12.5em;
+  height: 1.5em;
+  /* line-height: 3; */
+  background: #2c3e50;
+  overflow: hidden;
+  /* border-radius: .25em; */
+}
+select {
+  flex: 1;
+  padding: 0 .5em;
+  color: black;
+  cursor: pointer;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 .2em;
+  height: 2em;
+  width: 1.2em;
+  background: black;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
+    </style>
+</head>
+<body style=" background-color:rgb(10,10,25); color:white;   overflow: hidden; height: 700px;">
+  <!-- <body> -->
+
+
+
+    
+<div class="flex-container">
+
+  <div class="flex-grid">
+  <div id="dataInput" class="flex-grid-item" style='width:40%; height:50%'>
+
+  </div>
+  <div id="componentViz"  class="flex-grid-item" style='width:40%; height:50%'>
+    
+  </div>
+  </div>
+  <div id="mathViz" style='width:300px;'>
+      <h2>Eigen Vectors:</h2>
+
+      <svg height="180px" >
+
+      <g transform="translate(-60,0) scale(.8,.8)">
+      <path fill="rgb(255, 46, 99)" stroke="none" d="m 187,200 38,0 0,-183 -38,0 0,14 21,0 0,155 -21,0 0,14 z" id="corcht" />
+        <text fill="rgb(255, 46, 99)" id="matrix1_0" fill="currentColor" x="105" dy="80" font-size="40"font-weight="700">0.00</text>
+        <text fill="rgb(255, 46, 99)" id="matrix1_1" fill="currentColor" x="105" dy="160" font-size="40"font-weight="700">0.00</text>
+      <use transform="matrix(-1,0,0,1,305,0)" id="use5" x="0" y="0" width="260" height="1030" xlink:href="#corcht"/>
+      </g>
+
+        <g transform="translate(80,0) scale(.8,.8)">
+      <path fill="rgb(255, 46, 99)" stroke="none" d="m 187,200 38,0 0,-183 -38,0 0,14 21,0 0,155 -21,0 0,14 z" id="corcht" />
+        <text fill="rgb(255, 46, 99)" id="matrix2_0" fill="currentColor" x="105" dy="80" font-size="40" font-weight="700">0.00</text>
+        <text fill="rgb(255, 46, 99)" id="matrix2_1" fill="currentColor" x="105" dy="160" font-size="40"font-weight="700">0.00</text>
+      <use transform="matrix(-1,0,0,1,305,0)" id="use5" x="0" y="0" width="260" height="1030" xlink:href="#corcht"/>
+      </g>
+
+
+      </svg>
+      <hr>
+      <h2>Eigen Values:</h2>
+      <h2 id="eigVal0" style='color:rgb(255, 46, 99)' >0.000</h2>
+      <h2 id="eigVal1" style='color:rgb(255, 46, 99)' >0.000</h2>
+      <hr>
+      <br>
+
+      <div style="display:flex" >
+        <b>Project on: </b>
+        
+      <div class="select" style="padding-top: 0;margin:0; margin-left: 1em; ">
+        <select id="projSelect">
+          <!-- style="position:absolute;top:0px;left:0px;width:200px; height:25px;line-height:20px;margin:0;padding:0;" 
+          > -->
+          <option value="0" selected>Principle Component 1</option>
+          <option value="1">Principle Component 2</option>
+          <option value="2">None</option>
+        </select>
+      </div>
+      </div>
+      <br>
+        <span id="Settings"style="position:absolute;">
+      <span >Live-Update: </span>
+      <label class="switch" >
+          <input type="checkbox" id="toggle" onclick="(function(){document.getElementById('reCalculate-btn').style.opacity=(1-document.getElementById('reCalculate-btn').style.opacity)})()" checked>
+          <span class="theme-slider round"></span>
+      </label>
+      </span>
+      <div style="margin-top:80px; margin-left:0px;"></div>
+      <button id="reCalculate-btn" onclick="calcPCA()" style="opacity: 0;">RECALCULATE</button>
+      </div>
+
+
+  </div>
+
+  </div> 
+</div>
+
+
+
+
+
+   
+  <!-- <div id="container" style="position: relative; height:40vh; width:80vw; margin-top: 3%" >
+
+      <div id="dataInput" >
+      </div>
+    <div id="main-viz"style= "position: relative; width:550px;height:600px; display:inline-block;  margin-left: 5%; " >
+    </div>
+    <div id="componentViz" style= "width:500px;height:600px; display:inline-block;position: relative; "></div>
+    <div id="mathViz"style= "width:300px;height:200px; display:inline-block; position:relative; ">
+      <h2>Eigen Vectors:</h2>
+
+      <svg height="180px" >
+
+      <g transform="translate(-60,0) scale(.8,.8)">
+      <path fill="rgb(255, 46, 99)" stroke="none" d="m 187,200 38,0 0,-183 -38,0 0,14 21,0 0,155 -21,0 0,14 z" id="corcht" />
+        <text fill="rgb(255, 46, 99)" id="matrix1_0" fill="currentColor" x="105" dy="80" font-size="40"font-weight="700">0.00</text>
+        <text fill="rgb(255, 46, 99)" id="matrix1_1" fill="currentColor" x="105" dy="160" font-size="40"font-weight="700">0.00</text>
+      <use transform="matrix(-1,0,0,1,305,0)" id="use5" x="0" y="0" width="260" height="1030" xlink:href="#corcht"/>
+      </g>
+
+        <g transform="translate(80,0) scale(.8,.8)">
+      <path fill="rgb(255, 46, 99)" stroke="none" d="m 187,200 38,0 0,-183 -38,0 0,14 21,0 0,155 -21,0 0,14 z" id="corcht" />
+        <text fill="rgb(255, 46, 99)" id="matrix2_0" fill="currentColor" x="105" dy="80" font-size="40" font-weight="700">0.00</text>
+        <text fill="rgb(255, 46, 99)" id="matrix2_1" fill="currentColor" x="105" dy="160" font-size="40"font-weight="700">0.00</text>
+      <use transform="matrix(-1,0,0,1,305,0)" id="use5" x="0" y="0" width="260" height="1030" xlink:href="#corcht"/>
+      </g>
+
+
+      </svg>
+      <hr>
+      <h2>Eigen Values:</h2>
+      <h2 id="eigVal0" style='color:rgb(255, 46, 99)' >0.000</h2>
+      <h2 id="eigVal1" style='color:rgb(255, 46, 99)' >0.000</h2>
+      <hr>
+
+        <span id="Settings"style="position:absolute;">
+      <span >Live-Update: </span>
+      <label class="switch" >
+          <input type="checkbox" id="toggle" onclick="(function(){document.getElementById('reCalculate-btn').style.opacity=(1-document.getElementById('reCalculate-btn').style.opacity)})()" checked>
+          <span class="theme-slider round"></span>
+      </label>
+      </span>
+      <div style="margin-top:80px; margin-left:0px;"></div>
+      <button id="reCalculate-btn" onclick="calcPCA()" style="opacity: 0;">RECALCULATE</button>
+      </div>
+
+    </div>
+    </div>
+ -->
+
+
+    <script src="Source/data.js"></script>
+
+    <script src="../../js/dependency/tensorflowJS/tf.min.js"></script>
+    <script src="../../js/dependency/ndjs/nd.min.js"></script>
+    <script src="../../js/dependency/d3.js"></script>
+
+    <!-- <script>
+      
+      const tf = window.parent.tf;
+      const nd = window.parent.nd;
+      const d3 = window.parent.d3;
+
+    console.log(window, tf, nd, d3);
+    </script> -->
+    <script src="../../js/dependency/utils.js"></script>
+
+    <script src="Source/PCA.js"></script>
+    <script src="Source/inputSpace.js"></script>
+
+    <script src="Source/app.js"></script>
+    <!-- <script src="Source/renderComp.js"></script> -->
+</body>
+</html>

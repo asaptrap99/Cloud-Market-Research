@@ -1,0 +1,56 @@
+{
+  "jupyter-config-data": {
+    "appName": "JupyterLite",
+    "appUrl": "./lab",
+    "appVersion": "0.1.0-alpha.14",
+    "baseUrl": "./",
+    "disabledExtensions": [
+      "@jupyterlab/launcher",
+      "@jupyterlab/filebrowser",
+      "@jupyterlab/filebrowser-extension",
+      "@jupyterlab/mainmenu"
+    ],
+    "faviconUrl": "./lab/favicon.ico",
+    "federated_extensions": [
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.d549bef48726b371e378.js",
+        "name": "@jlab-enhanced/cell-toolbar",
+        "style": "./style"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.77881843fc0883c6091b.js",
+        "name": "@jupyterlab-examples/commands",
+        "style": "./style"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.2913f416404d0042f7d9.js",
+        "name": "@jupyterlab-examples/react-widget",
+        "style": "./style"
+      },
+      {
+        "extension": "./extension",
+        "liteExtension": false,
+        "load": "static/remoteEntry.9b1b78140b9790370e04.js",
+        "name": "@timkpaine/jupyterlab_miami_nights"
+      }
+    ],
+    "fullLabextensionsUrl": "./lab/extensions",
+    "fullMathjaxUrl": "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js",
+    "fullStaticUrl": "./lab/build",
+    "mathjaxConfig": "TeX-AMS_CHTML-full,Safe",
+    "settingsOverrides": {
+      "@jupyterlab/apputils-extension:themes": {
+        "theme": "JupyterLab Miami Nights"
+      }
+    },
+    "settingsUrl": "./lab/build/schemas",
+    "themesUrl": "./lab/build/themes"
+  },
+  "jupyter-lite-schema-version": 0
+}

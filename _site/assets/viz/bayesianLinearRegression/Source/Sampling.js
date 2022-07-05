@@ -1,0 +1,1 @@
+function fozz(){return null}

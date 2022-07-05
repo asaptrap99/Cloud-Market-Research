@@ -1,0 +1,14 @@
+# Jupyter Lite
+
+# TODO:
+
+* maybe inside of putting it inside an iframe we should put inside a div exculsively.
+* Run the cell-toolbar extension in jupyter lite retro.
+
+# Done:
+
+* Changes inside the style.css of night light theme.
+	* Change the background color
+	* Add border with border radius = 3px
+	* remove the glow.
+* Find a way to remove all the top toolbars/menubars.

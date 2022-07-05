@@ -1,0 +1,29 @@
+TODO:
+* plot all the market cap on the left!
+
+
+DONE:
+* copy this version to cloud market cap.
+* display market cap of all three in marker.
+* change the filters to suite our needs.
+* Check if data is working.
+* change the ui texts.
+* elevate the pines According to the market cap value.
+* fix the pines structure.
+* create a data pipeline to get the market cap of each region for each cloud services.
+* visualize the regional market cap on the left plot.
+* it should change by year as well.
+* create pins over each companies, -
+* check data source for bars and pines.
+* the colors of the pines associated with cloud services.
+
+science:
+* create model.
+* collect and process the data. ( find missing values.
+* predict market cap for all regions. 2hrs.
+
+
+
+	'mil' : 0xdd380c,
+	'civ' : 0x3dba00,
+	'ammo' : 0x154492,

@@ -1,0 +1,490 @@
+@import url('/assets/css/vars.css');
+body{
+  /* background-color: #eee; */
+  background-color: var(--tertiary-bg-color);
+  color: var(--main-fg-color);
+  /* background-color: red; */
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+#linearRegressionViz{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  /* scroll-snap-type: x mandatory; */
+  scroll-snap-type: x mandatory;
+  width: 100%;
+}
+
+.panel{
+  /* width: 100vw; */
+
+  justify-content: center;
+  scroll-snap-align: start;
+  padding-left: 0.1em;
+}
+
+.panel:nth-child(2){
+  display: flex;
+  flex-direction: column;
+}
+
+#left-panel{
+  display: flex;
+  flex-direction: column;
+}
+
+
+html{
+    min-height: 100%;
+    position: relative;
+    margin: 0px;
+}
+body{
+    height: 100%;
+    margin: 0px;
+
+    font-family:  "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+
+summary{
+    margin: 2em 0;
+}
+
+.container{
+    /* width: 1200px; */
+    /* background-color: red; */
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+    border-radius: 0 0 10px 10px;
+    /* padding: .2em 2em; */
+    border-top: none;
+}
+
+
+#inputSpaceViz{
+  /* width: 1000px; */
+  height: calc(var(--page-image-height)*0.85);
+}
+
+#title{
+    margin-top: 1em;
+    font-weight: 400;
+    font-size: 3.0em;
+    text-decoration: underline;
+    color: rgb(255, 0, 140);
+}
+
+h2{
+    /* font-weight: lighter; */
+}
+
+
+/* numbers in num line and ticks */
+.tick {
+    color: var(--secondary-fg-color)
+}
+
+.domain {
+    color: black;
+}
+
+#paramContainer{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5em;
+    /* width: 99vw; */
+}
+
+#paramContainer div{
+    /* padding-top: .8em; */
+    font-size: larger;
+    /* margin: .2em 0; */
+    width: max-content;
+
+}
+
+#group1 div{
+  padding-top: 0.5em;
+}
+#group2 div{
+  padding-top: 0.5em;
+}
+
+#group2 {
+  position: relative;
+}
+
+
+#paramContainer input[type="range"]{
+  text-align: center;
+  height: 50%;
+}
+
+#paramContainer input[type="number"] {
+	-webkit-appearance: textfield;
+	-moz-appearance: textfield;
+	appearance: textfield;
+	width: 5em;
+	text-align: center;
+	background: var(--secondary-bg-color);
+	color: var(--main-fg-color);
+	border: 0px;
+	border-right-width: 2px;
+	border-right-color: var(--secondary-fg-color);
+	border-right-style: inherit;
+
+	border-left-width: 2px;
+	border-left-style: inherit;
+	border-left-color: var(--secondary-fg-color);
+}
+
+/* #epoch { */
+#paramContainer input[type="number"] {
+    -webkit-appearance: textfield;
+        -moz-appearance: textfield;
+            appearance: textfield;
+            width: 5em;
+            text-align: center;
+    background-color: var(--secondary-bg-color);
+    
+    }
+    
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    }
+/* } */
+
+
+  /* * number input style */
+
+.number-input {
+    border: 2px solid var(--secondary-fg-color);
+    display: inline-flex;
+    border-radius: 2px;
+    padding: 0px;
+  }
+  
+  .number-input,
+  .number-input * {
+    box-sizing: border-box;
+    
+  }
+  
+  .number-input button {
+    outline:none;
+    -webkit-appearance: none;
+    background-color: var(--secondary-bg-color);
+    color: var(--secondary-fg-color);
+    border: none;
+    align-items: center;
+    justify-content: center;
+    /* width: .0em;
+    height: 1em; */
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+    font-size: 1.0em;
+    text-align: center;
+  }
+
+
+
+  /* * slider style */
+
+  .slidecontainer {
+    width: 100%; /* Width of the outside container */
+  }
+  
+  /* The slider itself */
+  .slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;  
+    background: var(--main-fg-color);
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #4CAF50;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+  }
+
+
+   /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  /* top: 0; */
+  left: 0;
+  /* right: 0;
+  bottom: 0; */
+  background: var(--main-fg-color);
+  -webkit-transition: .4s;
+  transition: .4s;
+  height: 35px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background: var(--secondary-bg-color);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+} 
+
+.btn{
+ padding: .7em 2em;
+ /* background-color: transparent; */
+ background-color: var(--main-fg-color);
+
+ border: 2px solid #999;
+ border-radius: .3em;
+
+ font-weight: bold;
+ color: var(--main-bg-color);
+ text-transform: uppercase;
+ letter-spacing: .1em;
+ display: inline-block;
+ font-size: 11px;
+
+ cursor: pointer;
+}
+.btn:hover{
+  /* background-color: #eee; */
+  border-color: #555;
+  color: #000;
+}
+
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+
+
+
+#svgContainer{
+
+  margin: 0 auto;
+  display: block;
+}
+
+#lossViz{
+  height: 125px;
+  width: 250px;
+  margin: 0 auto;
+
+}
+
+hr{
+  opacity: .1;
+  width: 97%;
+}
+
+#lrInput{
+  background-color: var(--secondary-bg-color);
+  color: var(--secondary-fg-color);
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:180px;
+  height:18px;
+  border:1px solid var(--main-bg-color);
+}
+
+
+
+
+
+
+
+/* Reset Select */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: var(--secondary-bg-color);
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  width: 9.5em;
+  height: 1em;
+  /* line-height: 3; */
+  background: #2c3e50;
+  overflow: hidden;
+  /* border-radius: .25em; */
+}
+select {
+  flex: 1;
+  padding: 0 .5em;
+  color: #aaa;
+  cursor: pointer;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 .2em;
+  background: var(--main-bg-color);
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
+ 
+
+@media only screen and (max-width: 780px){
+
+  #linearRegressionViz{
+    font-size: 65%;
+    justify-content: left;
+  }
+  #paramContainer{
+    flex-direction: row;
+    justify-content: center;
+
+    width: 99vw; /* not 100 because we are also using padding-left*/
+  }
+
+  #group2{
+    margin-top: 1em;
+    position: relative;
+    top: 25%;
+    height: max-content;
+  }
+
+  #btnContainer{
+    margin: 0 auto;
+    margin-top: 0.5em;
+    text-align: center;
+  }
+  .panel{
+
+  width: 100vw;
+  }
+}
