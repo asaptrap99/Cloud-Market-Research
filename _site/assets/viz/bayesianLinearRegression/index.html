@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Bayesian Curve Fitting</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" href=""> -->
+
+        <style type="text/css">
+             .chart-container{ 
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 40%;
+            }
+            .ctrl-container{
+                display: flex;
+
+            }
+            #Settings{
+                font-size: 17px;
+                font-weight: 800;
+                font-family:  Helvetica;
+            }
+            .slider {
+                -webkit-appearance: none;
+                width: 100%;
+                height: 5px;
+                border-radius: 5px;   
+                background: #303141;
+                outline: none;
+                opacity: 0.7;
+                -webkit-transition: .2s;
+                transition: opacity .2s;
+            }
+
+            .slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%; 
+                background: rgb(255, 0, 255);
+                cursor: pointer;
+            }
+            .slider::-webkit-slider-thumb:hover{
+                box-shadow: 0 5px 15px rgba(175, 84, 240, 0.774);
+                
+            } 
+           #reCalculate-btn {
+                text-decoration: none;
+                color: rgba(255, 255, 255, 0.911);
+                background: rgb(143, 22, 230);
+                padding: 10px 30px;
+                border-radius: 7px;
+                border:0;
+                font-weight: 700;
+                text-transform: uppercase;
+                transition: all 0.2s ease-in-out;
+            }
+
+            #reCalculate-btn:hover {
+                color: rgba(255, 255, 255, 1);
+                box-shadow: 0 5px 15px rgba(175, 84, 240, 0.774);
+            }
+
+
+            .switch{
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 34px;
+            }
+            .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+            }
+
+            .theme-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+            }
+
+            .theme-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+            }
+
+            input:checked + .theme-slider {
+            background-color:  rgb(143, 22, 230);
+                box-shadow: 0 5px 15px rgba(175, 84, 240, 0.774);
+            }
+
+            input:focus + .theme-slider {
+            box-shadow: 0 0 1px  rgb(143, 22, 230);
+            }
+
+            input:checked + .theme-slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+            }
+
+            /* Rounded sliders */
+            .theme-slider.round {
+            border-radius: 34px;
+            }
+
+            .theme-slider.round:before {
+            border-radius: 50%;
+            }
+            </style>
+        </head>
+            <body>
+                    <!--[if lt IE 7]>
+                        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+                    <![endif]-->
+                    
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script> -->
+    <!-- <script src="../Chart.js/" -->
+    <!-- <canvas id="myCanvas" ></canvas> -->
+    <div class="chart-container" style="position: relative; height:40vh; width:80%">
+        <div id="cover-viz" style="width: 80%; margin-left: 5%">
+
+        </div>
+    <div class="ctrl-container">
+            <div class="slider-container">
+
+                <span id="Settings">
+                DataSize: <span id="sSize" >7</span>
+                </span>
+
+                <br>
+                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            </div> 
+
+            <br>    
+
+            <div class="slider-container" style="margin-left:10px">
+                <span id="Settings">
+                Degree: <span id="degreeTxt">8</span>
+                </span>
+                <br>
+                <input type="range" min="1" max="100" value="50" class="slider" id="newDegree">
+            </div> 
+            <div style="margin-left: 10px">
+                <button id="reCalculate-btn" onclick="reCalculate();updateChart();">Recalculate</button>
+            </div>
+           
+        <span id="Settings"style="position:absolute;right: 10px">
+            <span >DarkMode: </span>
+            <label class="switch" >
+                <input type="checkbox" id="toggle" onclick="toggleDarkMode();" checked>
+                <span class="theme-slider round"></span>
+            </label>
+        </span>
+
+
+        </div>
+    </div>
+
+    <script src="../../js/dependency/tensorflowJS/tf.min.js"></script>
+    <script src="../../js/dependency/ndjs/nd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    
+
+    <script src="dependencies/gaussian-elimination/gauss.js"></script>
+    <script src="dependencies/quickSort.js"></script>
+    <script src="dependencies/mathJs/math.js"></script>
+    <script src="dependencies/multivariate-normal/multivariate-normal.min.js"></script>
+
+    <script src="Source/BayesianCurveFitting.js"></script>
+    <!-- <script src="Source/BCF/BayesianCurveFittingLib.js"></script> -->
+    <script src="Source/LBF.js"></script>
+    <script src="Source/utils.js"></script>
+    <script src="Source/app.js" async defer></script>
+    </body>
+</html>

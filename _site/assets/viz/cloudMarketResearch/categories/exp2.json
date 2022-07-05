@@ -1,0 +1,28 @@
+{
+	"timeBins": [{
+		"data": [{
+			"e": "United States",
+			"i": "United States",
+
+			"wc": "azure",
+			"v": 9999
+			}
+		],
+		"t": 2016
+
+	},
+	{
+		"data": [{
+			"e": "United States",
+			"i": "United States",
+
+			"wc": "aws",
+			"v": 5555
+			}
+		],
+		"t": 2017
+
+	}
+
+	]
+}

@@ -78,7 +78,7 @@ layout: default
   <!-- imported the required visualization script for cover-visualization -->
   <article class="article-page">
     <div class="page-image" style='height: {{page.height}}'>
-      <embed id="myFrame" style="background-size: cover;padding: 0%;" frameborder=0 class="cover-image" width="90%" align="middle" padding="0" scrolling="no" src='{{"/assets/viz/" | prepend: site.baseurl | append : page.viz}}'></embed>
+      <embed id="myFrame" style="background-size: cover;padding: 0%;" frameborder=0 class="cover-image" width="90%" height="800" align="middle" padding="0" scrolling="no" src='{{"/assets/viz/" | prepend: site.baseurl | append : page.viz}}'></embed>
     </div>
     <div class="wrapper">
       <div class="page-content">
@@ -96,15 +96,15 @@ layout: default
         <!-- <embed id="myFrame" style="background-size: cover;padding: 0%;" frameborder=0 class="cover-image" width="100%" height="1000px" align="middle" padding="0" scrolling="no" 
         ></embed> -->
 
-      <input type="range" min="1" max="3" value="0" onchange="change_content(this.value -1)" style="display: block; margin: 0 auto;">
+      <!-- <input type="range" min="1" max="3" value="0" onchange="change_content(this.value -1)" style="display: block; margin: 0 auto;"> -->
 
-      <div id="code" style="display: none;">
+      <!-- <div id="code" style="display: none;">
 
-        <embed id="myFrame" style="background-size: cover;padding: 0%;" frameborder=0 class="cover-image" width="100%" height="1000" align="middle" padding="0" scrolling="no" 
+        <embed id="myFrame" style="background-size: cover;padding: 0%;" frameborder=0 class="cover-image" width="100%" height="2000" align="middle" padding="0" scrolling="no" 
         src='{{"/assets/output/lab/?path=" | prepend: site.baseurl | append : page.code}}'
         ></embed>
 
-      </div>
+      </div> -->
 
       <div id="disc0">
 

@@ -1,0 +1,47 @@
+:root{
+
+  --main-link-color: #ff1e87;
+
+  /* Light Mode */
+  /* --main-bg-color: #fff;
+  --main-fg-color: #311e3e;
+  --main-text-color: #3e3e40;
+  --main-footer-color: #efefef;
+
+  --main-post-bg-color: #fff; */
+
+  /* Dark Mode */
+  --main-bg-color: rgb(5, 0, 17);
+
+  /*github dark theme bg color*/
+  --main-bg-color: #0D1117; 
+
+  /*multi-arm bandit's bg color*/
+  --main-bg-color: #191928; 
+
+  --secondary-bg-color:#141420; 
+  --tertiary-bg-color: #12121d; 
+  
+  /* --main-bg-color: linear-gradient(#323B5C, #2F2E54); */
+  
+  --main-fg-color: white;
+  --secondary-fg-color:#eee;
+
+
+  --main-text-color: white;
+  --main-footer-color: rgb(3, 4, 7);
+
+  --main-post-bg-color: #090618;
+  --main-post-bg-color: #2F3754;
+  --main-post-bg-color: var(--main-bg-color); /*multi-arm bandit's bg color*/
+
+  --page-image-height: 700px;
+
+}
+@media only screen and (max-width: 480px){
+
+  :root{
+    --page-image-height: 380px;
+  }
+}
+    
