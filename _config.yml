@@ -9,7 +9,7 @@ al: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author settings
 author: Cloud Market Research
-author-pic: mrityunjay.png
+author-pic: WhatsApp Image 2021-11-22 at 19.39.48.jpeg
 about-author: Machine Learning Playground was created by <a href="https://mrityunjay.ml/">Mrityunjay Bhardwaj</a> while going through several ML Books such as ESL, PRML,Goodfellow et al etc. The goal of this website is to make machine learning a bit more accessible through interactive visualizations (designed using Mike Bostock’s JavaScript library <a href="https://d3js.org/">D3.js</a>).
 
 # Contact links
