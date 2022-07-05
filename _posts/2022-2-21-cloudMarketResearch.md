@@ -12,8 +12,7 @@ viz: cloudMarketResearch/index.html
 code: Linear_Regression.ipynb
 ---
 
-Report: How market cap of big 3 cloud solutions has changed over time
-Meta: How big is the cloud market region-wise, and how has it changed over time? Interactive visualization of regional market share since 2015 
+<H1>Report</H!>
 
 The fact that the cloud infrastructure market enjoyed another exceptional quarter is not breaking news. Following the prominent three vendors' earnings reports this week, Amazon, Microsoft, and Google, who together captured 65% of worldwide cloud computing spending in Q1 2022, surpassed their competition to the point where their combined dominance limits competitors from pursuing specialized markets.
 If you're anything like me, you might be curious about the regional market size for each platform. What about the number of businesses utilizing these services locally? How well do these services return on investment?
