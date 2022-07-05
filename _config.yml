@@ -11,8 +11,7 @@ al: "" # the base hostname & protocol for your site, e.g. http://example.com
 # Author settings
 author: Cloud Market Research
 author-pic: WhatsApp Image 2021-11-22 at 19.39.48.jpeg
-about-author: Cloud Market research was created by <a href="https://www.linkedin.com/in/shashank-pandey-72a952144/">Shashank Pandey</a>. The goal of this report is to throughly study on how market cap of big 3 cloud solutions has changed over time
-through interactive visualizations (designed using Mike Bostock’s JavaScript library <a href="https://d3js.org/">D3.js</a>).
+about-author: Cloud Market research was created by <a href="https://www.linkedin.com/in/shashank-pandey-72a952144/">Shashank Pandey</a>. The goal of this report is to throughly study on how market cap of big 3 cloud solutions has changed over time through interactive visualizations (designed using Mike Bostock’s JavaScript library <a href="https://d3js.org/">D3.js</a>).
 
 # Contact links
 email: # Add your Email address
