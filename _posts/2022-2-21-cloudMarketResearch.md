@@ -32,7 +32,7 @@ Both AWS and Azure are seeing an increase in income from year to year. Compared 
 
 ### Case Study 1
 
-<img  src="{{baseurl}}/assets/img/posts_imgs/cloudMarketResearch/Malaysia_data.png"></img>
+<img  src="{{baseurl}}/assets/img/posts_imgs/cloudMarketResearch/Malaysia\ data.png"></img>
 
 Magnum Corporation has been a pioneer in Malaysia's gaming sector since 1968. The company's primary areas of interest include its legally permitted lottery business, 4-Digit (4D) numbers forecast betting, and related activities. The company's on-site, co-located IT infrastructure was handled by an internal team answering the CIO. It is hosted in Kuala Lumpur. In light of the shifting business climate and market circumstances in Malaysia.
 
