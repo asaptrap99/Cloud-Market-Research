@@ -1,7 +1,7 @@
 title: Cloud Market Research
 email: pshashank1999@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  How big is the cloud market region-wise, and how has it changed over time?</b>
+  How big is the cloud market region-wise, and how has it changed over time?</br>
   Interactive visualization of regional market share since 2016. 
 
 permalink: ':title/'
@@ -11,15 +11,16 @@ al: "" # the base hostname & protocol for your site, e.g. http://example.com
 # Author settings
 author: Cloud Market Research
 author-pic: WhatsApp Image 2021-11-22 at 19.39.48.jpeg
-about-author: Machine Learning Playground was created by <a href="https://mrityunjay.ml/">Mrityunjay Bhardwaj</a> while going through several ML Books such as ESL, PRML,Goodfellow et al etc. The goal of this website is to make machine learning a bit more accessible through interactive visualizations (designed using Mike Bostock’s JavaScript library <a href="https://d3js.org/">D3.js</a>).
+about-author: Cloud Market research was created by <a href="https://www.linkedin.com/in/shashank-pandey-72a952144/">Shashank Pandey</a>. The goal of this report is to throughly study on how market cap of big 3 cloud solutions has changed over time
+through interactive visualizations (designed using Mike Bostock’s JavaScript library <a href="https://d3js.org/">D3.js</a>).
 
 # Contact links
 email: # Add your Email address
 phone: # Add your Phone number
 website: # Add your website, do not add http://
 linkedin: # Add your Linkedin handle
-github: MrityunjayBhardwaj # Add your Github handle
-twitter: '@mrityunjay_99' # Add your Twitter handle
+github: ShashankPandey # Add your Github handle
+twitter: '@asaptrap99' # Add your Twitter handle
 facebook: # Add your Facebook handle
 instagram: # Add your Instagram handle
 pinterest: # Add your Pinterest handle
@@ -28,7 +29,7 @@ pinterest: # Add your Pinterest handle
 mailchimp: # Add your MailChimp form identifier.
 
 # Disqus
-discus_identifier: https-mrityunjaybhardwaj-github-io # Add your discus identifier
+discus_identifier: https-shashankpandey-github-io # Add your discus identifier
 
 # Tracker
 analytics: # Google Analytics
