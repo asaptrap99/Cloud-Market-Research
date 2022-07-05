@@ -32,21 +32,21 @@ Both AWS and Azure are seeing an increase in income from year to year. Compared 
 
 ### Case Study 1
 
-<img  src="{{baseurl}}/assets/img/posts_imgs/cloudMarketResearch/Malaysia\ data.png"></img>
-
 Magnum Corporation has been a pioneer in Malaysia's gaming sector since 1968. The company's primary areas of interest include its legally permitted lottery business, 4-Digit (4D) numbers forecast betting, and related activities. The company's on-site, co-located IT infrastructure was handled by an internal team answering the CIO. It is hosted in Kuala Lumpur. In light of the shifting business climate and market circumstances in Malaysia.
 
 During this period, they were able to sucessfully host their Microsoft-based packaging and logistics systems.
 
 Since their user base was dispersed around the APAC area, this had to be done without causing service interruptions or accessibility issues.
-The organization began its cloud migration by implementing the SaaS mail service O365. But they also had to organize, design, and manage their PaaS (Platform as a Service) and IaaS (Infrastructure as a Service) clouds. They intended to eventually embrace Microsoft Azure to create an internal cloud center of excellence since they required a reliable partner to help them with their cloud transition and score some quick victories.
+The organization began its cloud migration by implementing the SaaS mail service O365. But they also had to organize, design, and manage their PaaS (Platform as a Service) and IaaS (Infrastructure as a Service) clouds. They intended to eventually embrace Microsoft Azure to create an internal cloud center of excellence since they required a reliable partner to help them with their cloud transition and score some quick victories. Please look at the timeline graph containing Malaysia's market cap insight. 
+
+<img  src="{{baseurl}}/assets/img/posts_imgs/cloudMarketResearch/Malaysia\ data.png"></img>
 
 ### Case study 2
 
 
-<img  src="{{baseurl}}/assets/img/posts_imgs/cloudMarketResearch/India_data.png"></img>
-
 An E-commerce solution provider founded in 2015, the client intends to simplify the rapidly evolving landscape of online commerce for hyperlocal businesses through their sustainable and simple solutions. Based in Bengaluru, the client has grown across many countries powering hundreds of point-of-sale(POS) companies and thousands of restaurants across the world. Previous application setup which is hosted on AWS, the tech stack and their dependencies with other applications and components.
 
-Firm migrated from AWS to GCP in order to leverage Google Cloud Platform benefits, reduce cost consumption, and meet business needs. 
+Firm migrated from AWS to GCP in order to leverage Google Cloud Platform benefits, reduce cost consumption, and meet business needs. Please look at the timeline graph containing India's market cap insight. 
+
+<img  src="{{baseurl}}/assets/img/posts_imgs/cloudMarketResearch/India_data.png"></img>
  
