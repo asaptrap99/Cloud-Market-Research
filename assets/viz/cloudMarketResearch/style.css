@@ -80,7 +80,7 @@ li { list-style-type:none; }
 	background-color: 	#000000;
 	margin: 			0px;
 	overflow-y: 		hidden;
-	overflow-x:         auto;
+	overflow-x:         hidden;
 }
 #overlay_2d{
 	-webkit-perspective:		800;
