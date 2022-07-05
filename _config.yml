@@ -1,8 +1,8 @@
 title: Cloud Market Research
-email: mrityunjaybhardwaj99@gmail.com
+email: pshashank1999@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  A platform for <b>Playing</b>, <b>Exploring</b> and <b>Understanding</b> <br>
-  several Machine Learning Algorithms.
+  How big is the cloud market region-wise, and how has it changed over time? Interactive visualization of regional market share since 2016. 
+
 permalink: ':title/'
 baseurl: "" # the subpath of your site, e.g. /blog
 al: "" # the base hostname & protocol for your site, e.g. http://example.com
